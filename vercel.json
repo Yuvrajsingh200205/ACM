@@ -8,14 +8,14 @@
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "/index.js"
+      "src": "/api/subscribe",
+      "dest": "/api/subscribe.js" 
       }
     ],
     "env": {
       "DB_USER": "postgres",
       "DB_HOST": "localhost",
-      "DB_NAME": "yuvraj01",
+      "DB_NAME": "practice1",
       "DB_PASSWORD": "Yuvraj@2002",
       "DB_PORT": "5432"
     }

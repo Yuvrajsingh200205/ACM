@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "env": "node -e 'console.log(process.env)'",
-    "build": "echo \"No build step defined\"",
+    "build": "nodemon index.js",
     "start:prod": "NODE_ENV=production node index.js"
   },
   "author": "",
