@@ -5,5 +5,5 @@ const { subscribe } = require('../controller/subscriptionController');
 const { aaryan } = require('../controller/hii');
 
 router.get('/',aaryan);
-router.post('/subscribe', subscribe);
+router.post('/subscribe',subscribe);
 module.exports = router;

@@ -9,7 +9,7 @@ const sendThankYouEmail = async (email) => {
     },
   }); 
 
-  
+ console.log("hii from sub");
 
   let mailOptions = {
     from: process.env.EMAIL_USER,
