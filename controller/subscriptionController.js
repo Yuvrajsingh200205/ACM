@@ -1,26 +1,43 @@
 const pool = require('../db/connection');
 const { sendThankYouEmail } = require('./emailController');
 
-const subscribe = async (req, res) => {
-  const { email } = req.body;
-
+async function subscribe(email) {
   try {
+<<<<<<< HEAD
     // Insert the email into the database
     await pool.query('INSERT INTO SUBSCRIBERS (email) VALUES ($1)', [email]);
 
     // Send the thank-you email
     await sendThankYouEmail(email);
+=======
+    const checkQuery = 'SELECT * FROM SUBSCRIBERS WHERE email = $1';
+    const checkResult = await pool.query(checkQuery, [email]);
 
-    res.status(200).json({ message: 'Subscribed successfully and email sent' });
+    if (checkResult.rows.length > 0) {
+      return { success: false, message: 'Email is already subscribed.' };
+    }
+>>>>>>> 45e69df14e92fd17c38fcb4db24245c36ad03369
+
+
+    const insertQuery = 'INSERT INTO SUBSCRIBERS (email) VALUES ($1)';
+    await pool.query(insertQuery, [email]);
+
+    return { success: true, message: 'Subscription successful.' };
   } catch (err) {
     console.error('Error during subscription', err);
+<<<<<<< HEAD
 
     if (err.code === '23505') { 
       res.status(409).json({ message: 'Email already subscribed' });
     } else {
       res.status(500).json({ message: 'Server error' });
     }
+=======
+    return { success: false, message: 'An error occurred during subscription.' };
+>>>>>>> 45e69df14e92fd17c38fcb4db24245c36ad03369
   }
-};
+}
 
 module.exports = { subscribe };
+
+
