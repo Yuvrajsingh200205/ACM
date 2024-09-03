@@ -1,26 +1,30 @@
 const nodemailer = require('nodemailer');
-
+require('dotenv').config(); 
+console.log("hii from subscriber")
 const sendThankYouEmail = async (email) => {
+  
   let transporter = nodemailer.createTransport({
-    service: 'Gmail',
+    host: 'smtp.ethereal.email',
+    port: 587,
+    secure: false, 
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: process.env.ETHEREAL_USER, 
+      pass: process.env.ETHEREAL_PASS, 
     },
-  }); 
-
- console.log("hii from sub");
+  });
 
   let mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: process.env.EMAIL_USER, 
     to: email,
     subject: 'Thank You for Subscribing',
     text: 'Thank you for subscribing! We appreciate your support.',
   };
 
   try {
-    await transporter.sendMail(mailOptions);
+    const info = await transporter.sendMail(mailOptions);
     console.log('Thank-you email sent');
+    
+    console.log('Preview URL:', nodemailer.getTestMessageUrl(info));
   } catch (error) {
     console.error('Error sending thank-you email', error);
   }

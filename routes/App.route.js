@@ -7,3 +7,4 @@ const { aaryan } = require('../controller/hii');
 router.get('/',aaryan);
 router.post('/subscribe',subscribe);
 module.exports = router;
+

@@ -5,15 +5,16 @@ const subscribe = async (req, res) => {
   const { email } = req.body;
 
   try {
-    //  database
+    // Insert the email into the database
     await pool.query('INSERT INTO SUBSCRIBERS (email) VALUES ($1)', [email]);
 
-    // Send  subscription
+    // Send the thank-you email
     await sendThankYouEmail(email);
 
     res.status(200).json({ message: 'Subscribed successfully and email sent' });
   } catch (err) {
     console.error('Error during subscription', err);
+
     if (err.code === '23505') { 
       res.status(409).json({ message: 'Email already subscribed' });
     } else {
