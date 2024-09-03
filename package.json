@@ -1,5 +1,6 @@
 {
   "name": "acm-backend",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -10,10 +11,10 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "env": "node -e 'console.log(process.env)'",
-    "build": "nodemon index.js",
+    "build": "echo 'No build step required'",
     "start:prod": "NODE_ENV=production node index.js"
   },
-  "author": "",
+  "author": "yuvraj",
   "license": "ISC",
   "description": "",
   "dependencies": {

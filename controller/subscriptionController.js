@@ -13,14 +13,11 @@ async function subscribe(email) {
     await sendThankYouEmail(email);
 
     return { success: true, message: 'Subscription successful.' };
-  } catch (err) {
-    console.error('Error during subscription', err);
-
-    // Handle duplicate email error
-    if (err.code === '23505') { // Unique violation error code in PostgreSQL
-      return { success: false, message: 'Email already subscribed.' };
+  } catch (error) {
+    if (error.code === '23505') { // unique_violation
+      res.status(409).json({ message: 'Email already subscribed' });
     } else {
-      return { success: false, message: 'Server error occurred during subscription.' };
+      res.status(500).json({ message: 'Internal server error' });
     }
   }
 }
