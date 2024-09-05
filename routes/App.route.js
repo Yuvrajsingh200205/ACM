@@ -12,9 +12,12 @@ router.post('/subscribe', async (req, res) => {
   if (!email) {
     return res.status(400).json({ success: false, message: 'Email is required.' });
   }
-
+  try {
   const result = await subscribe(email);
   return res.status(result.success ? 200 : 400).json(result);
+  } catch (e) {
+    console.log(e)
+  }
 });
 
 module.exports = router;
