@@ -15,7 +15,7 @@
 
 const pool = require('./connection');
 
-const createUsersTable = `
+createUsersTable = `
   CREATE TABLE IF NOT EXISTS SUBSCRIBERS (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,

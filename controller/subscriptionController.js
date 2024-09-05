@@ -17,11 +17,16 @@ async function subscribe(email) {
     console.error('Error during subscription', err);
 
     // Handle duplicate email error
-    if (err.code === '23505') { // Unique violation error code in PostgreSQL
-      return { success: false, message: 'Email already subscribed.' };
-    } else {
-      return { success: false, message: 'Server error occurred during subscription.' };
-    }
+   try {
+     if (err.code === '23505') { // Unique violation error code in PostgreSQL
+       return { success: false, message: 'Email already subscribed.' };
+     } else {
+       return { success: false, message: 'Server error occurred during subscription.' };
+     }
+   } catch (error) {
+       //ToDo:handle
+       console.log("Error");
+   }
   }
 }
 
